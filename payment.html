@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: lightcoral;
+        }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkred;
+    color: blue;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.confirmation-title {
+    margin-left: -450px; /* Adjust as needed */
+}
+
+.logo {
+    margin-right: 20px; /* Adjust as needed */
+}
+
+        .content {
+            padding: 20px;
+        }
+
+        .confirmation-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .confirmation-box h2 {
+            font-size: 28px;
+            color: orange;
+        }
+
+        .confirmation-details p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: orange;
+        }
+
+        .label {
+            font-weight: bold;
+            color: lightgreen;
+        }
+
+        .icon {
+            color: #4CAF50;
+            margin-right: 5px;
+        }
+
+        .timer {
+            font-size: 54px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .timer span {
+            display: inline-block;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .footer {
+            background-color: darkred;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .pay-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 190px;
+            height: 60px;
+            font-size: 18px;
+        }
+            .pay-button:hover {
+           background-color: green;
+            }
+  .original-box-shadow {
+  display: flex;
+      justify-content: space-between;
+
+  align-items: center;
+  color: brown;
+  background-color: lightgreen;
+  font-size: 30px;
+  width: 300px;
+  height: 80px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.4), 10px 10px 0px 0px rgba(0, 0, 0, 0.3), 15px 15px 0px 0px rgba(0, 0, 0, 0.2), 20px 20px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+ .logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+}
+
+ .logo img {
+    height: 120px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+.swal2-popup {
+    background-color: grey;
+    color: white;
+}
+    </style>
+    
+</head>
+<body>
+<div class="header">
+      
+    <h1 class="confirmation-title"><h1 class="original-box-shadow"> &nbsp;  <i class="fas fa-check"></i>
+ Konfirmasi Pembayaran</h1>
+    <div class="logo">
+        <img src="img/logo.webp" alt="Logo">
+    </div>
+</div>
+<div class="content">
+    <div class="confirmation-box">
+        <h2> <i class="fas fa-info-circle"></i>  &nbsp;  Detail Konfirmasi</h2>
+        <div class="confirmation-details">
+            <p><br><i class="icon fas fa-credit-card"></i> &nbsp; <span class="label">Payment Method: </span> <span id="paymentMethod"></span></p></br>
+            <p><span class="label"><i class="fas fa-money-check-alt"></i>  &nbsp; Payment Instructions: </span></p>
+            <div id="paymentInstructions"></div>
+            <p><br><i class="icon fas fa-money-bill-wave"></i> &nbsp; <span class="label">Total Price: </span> <span id="totalOrderPrice"></span></p></br>
+            <p><i class="icon fas fa-map-marker-alt"></i> &nbsp; <span class="label">Shipping Address: </span> <br> <br><span id="addressDetails"></span></p></br></br>
+            <button id="payButton" class="pay-button" onclick="sayaSudahBayar()">Saya Sudah Bayar</button>
+        </div>
+    </div>
+</div>
+
+<div class="timer">
+    <span id="minutes">00</span>:<span id="seconds">00</span>
+</div>
+<div class="footer">
+    <p>&copy; Fire Chicken™</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Set the countdown time to 30 minutes (30 minutes * 60 seconds)
+    var countdownTime = 30 * 60;
+
+    // Function to update the countdown timer
+    function updateTimer() {
+        var minutes = Math.floor(countdownTime / 60);
+        var seconds = countdownTime % 60;
+
+        // Display the countdown timer
+        document.getElementById('minutes').innerText = pad(minutes);
+        document.getElementById('seconds').innerText = pad(seconds);
+
+        // Reduce the countdown time by 1 second
+        countdownTime--;
+
+        // Stop the countdown timer when it reaches 0
+        if (countdownTime < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerHTML = "Time's up!";
+        }
+    }
+
+    // Function to pad single digit numbers with leading zeros
+    function pad(num) {
+        return num < 10 ? '0' + num : num;
+    }
+
+    // Call the updateTimer function every second
+    var timerInterval = setInterval(updateTimer, 1000);
+
+    function updateConfirmationPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const metodePembayaran = urlParams.get('paymentMethod').replace(/["{}]/g, '');
+        const totalHarga = urlParams.get('totalOrderPrice').replace(/["{}]/g, '');
+        const detailPesanan = urlParams.get('addressDetails').replace(/["{}]/g, '');
+
+        document.getElementById('paymentMethod').innerText = metodePembayaran;
+        document.getElementById('totalOrderPrice').innerText = `Rp${totalHarga}`;
+
+        const alamatLines = detailPesanan.split(',');
+        const alamatTerformat = alamatLines.join('<br>');
+        document.getElementById('addressDetails').innerHTML = alamatTerformat;
+
+        let instruksiPembayaran = '';
+        switch(metodePembayaran.toLowerCase()) {
+            case 'ovo':
+                instruksiPembayaran = '1. Buka aplikasi OVO.<br>2. Pilih menu "Bayar".<br>3. Masukkan nomor OVO penerima <span onclick="copyToClipboard(\'087865790945\')" style="cursor: pointer;"><mark>087865790945</mark></span>.<br>4. Masukkan jumlah pembayaran dan konfirmasi pembayaran.';
+                break;
+            case 'dana':
+                instruksiPembayaran = '1. Buka aplikasi Dana.<br>2. Pilih menu "Kirim".<br>3. Masukkan nomor penerima <span onclick="copyToClipboard(\'081216447149\')" style="cursor: pointer;"><mark>081216447149</mark></span> atau pilih dari daftar kontak.<br>4. Masukkan jumlah pembayaran dan konfirmasi pembayaran.';
+                break;
+            case 'bri transfer':
+                instruksiPembayaran = '1. Buka aplikasi mobile banking BRI atau ATM.<br>2. Pilih menu "Transfer".<br>3. Masukkan nomor rekening penerima.<br>4. Masukkan jumlah pembayaran dan konfirmasi pembayaran.';
+                break;
+            case 'cod':
+                instruksiPembayaran = '1. Siapkan jumlah uang tunai yang sesuai.<br>2. Bayar tunai ketika pesanan tiba di alamat pengiriman.';
+                document.getElementById('payButton').innerText = 'Saya Bayar COD';
+                document.getElementById('payButton').onclick = sayaBayarCOD;
+                break;
+            default:
+                instruksiPembayaran = 'Instruksi pembayaran akan diberikan saat checkout.';
+        }
+        document.getElementById('paymentInstructions').innerHTML = instruksiPembayaran;
+    }
+
+    function copyToClipboard(text) {
+        var input = document.createElement('input');
+        input.setAttribute('value', text);
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        alert('Nomor telepon telah disalin: ' + text);
+    }
+
+    updateConfirmationPage();
+    
+    function sayaSudahBayar() {
+    // Extract data from the HTML elements
+    const paymentMethod = document.getElementById('paymentMethod').innerText.trim();
+    const totalOrderPrice = document.getElementById('totalOrderPrice').innerText.trim();
+    const addressDetails = document.getElementById('addressDetails').innerText.trim();
+
+    // Construct the message
+    const message = `Checkout Confirmation:\nPayment Method: ${paymentMethod}\nTotal Price: ${totalOrderPrice}\nShipping Address:\n${addressDetails}\n\nSaya sudah bayar.`;
+
+    // Encode the message for the URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // WhatsApp number to send the message to
+    const whatsappNumber = '6281216447149';  // Replace with the desired WhatsApp number
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Mohon Pastikan sudah melakukan pembayaran , dan kirim bukti ke admin!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Gassss!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Tunggu!",
+                text: "Di tunggu Pembayarannya.",
+                icon: "success"
+            });
+            // Construct the WhatsApp URL
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Open the WhatsApp URL
+            window.open(whatsappURL, '_blank');
+        }
+    });
+}
+
+    function sayaBayarCOD() {
+// Extract data from the HTML elements
+        const paymentMethod = document.getElementById('paymentMethod').innerText.trim();
+        const totalOrderPrice = document.getElementById('totalOrderPrice').innerText.trim();
+        const addressDetails = document.getElementById('addressDetails').innerText.trim();
+
+        // Construct the message for COD payment
+        const message = `Checkout Confirmation:\nPayment Method: ${paymentMethod}\nTotal Price: ${totalOrderPrice}\nShipping Address:\n${addressDetails}\n\nSaya bayar COD.`;
+
+        // Encode the message for the URL
+        const encodedMessage = encodeURIComponent(message);
+
+        // WhatsApp number for COD payment
+        const whatsappNumber = '6281216447149';  // Replace with the desired WhatsApp number
+
+        // Construct the WhatsApp URL
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        // Open the WhatsApp URL
+        window.open(whatsappURL, '_blank');
+    }
+</script>
+
+</body>
+</html>
