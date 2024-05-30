@@ -76,24 +76,22 @@
             display: block;
         }
         
-.slider {
-    width: 100%;
-    max-width: none; /* Remove the maximum width */
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    width: 100%; /* Ensure the slides take up the full width */
-    height: 100%; /* Ensure the slides take up the full height */
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    min-width: 100%; /* Ensure each slide takes up the full width */
-    box-sizing: border-box;
-}
+        .slider {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
         
         .slide img {
             max-width: 500px;
@@ -110,14 +108,15 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
-.section1 {
-    background-color: lightcoral;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    height: 100vh; /* Set the height to 100% of the viewport height */
-}
+        .section1 {
+            background-color: lightcoral;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 0px 0;
+            border-radius: 10px;
+            height: 750px;
+        }
                 .section2 {
             color: white;
             font-size: 26px;
@@ -365,12 +364,80 @@ figure.snip1390 .profile {
   opacity: 0;
 }
 .container img {
-  max-height: 300px;
+  max-height: 620px;
   justify-content: center;
   position: relative;
 }
 
 
+
+/* Mobile Styles */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .slider {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .slides {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .section1 {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+    }
+
+    /* Adjust padding and margins for a better mobile layout */
+    section {
+        padding: 10px;
+    }
+
+    /* Adjust font sizes */
+    h1, h2, h3, p {
+        margin: 5px 0;
+    }
+
+    /* Ensure images fit within their containers */
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
 /* Tablet Landscape */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     /* CSS rules for tablet landscape */
@@ -426,28 +493,6 @@ button {
 /* Style for the fold toggle */
 .fold-toggle {
     cursor: pointer;
-}
-
-/* Mobile Landscape & Portrait */
-@media screen and (max-width: 480px) {
-    .slider {
-        width: 100%;
-        max-width: none;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .slides {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-    }
 }
     </style>
 </head>
