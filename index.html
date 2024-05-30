@@ -122,11 +122,11 @@
             font-size: 26px;
         }
         
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
         
         .menu-item {
             background-color: #222;
@@ -174,7 +174,7 @@
         }
         
         .order-button img {
-    width: 180%;
+    width: auto;
     height: 140%;
     border-radius: 50%;
     border: 3px solid white;
@@ -213,7 +213,7 @@
         }
 
         .popup-content {
-            background-color: white;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -329,7 +329,103 @@ figure.snip1390 .profile {
   cursor: pointer;
 }
 
+.product-item {
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.product-item1 {
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.fade {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade.fade-out {
+  opacity: 0;
+}
+.container img {
+  max-height: 620px;
+  justify-content: center;
+  position: relative;
+}
+
+
+/* Tablet Landscape */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* CSS rules for tablet landscape */
+}
+
+/* Tablet Portrait */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    /* CSS rules for tablet portrait */
+}
+
+/* Mobile Landscape & Portrait */
+@media screen and (max-width: 480px) {
+    /* CSS rules for mobile */
+}
+
+
+.folded .contact-content {
+    display: none;
+}
 /* Additional styles for navigation or autoplay can be added here */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Style for the fold toggle */
+.fold-toggle {
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -364,7 +460,7 @@ figure.snip1390 .profile {
 
 <section id="about">
     <h2><i class="fas fa-users"></i> &nbsp; Tentang Kami</h2>
-    <p><i><b>" Ayam Goreng Samyang adalah restoran yang menyediakan ayam goreng dengan cita rasa pedas khas Korea. Kami menggunakan bumbu Samyang yang terkenal dengan tingkat kepedasan tinggi yang dapat memanjakan lidah Anda. "</p></i></b>
+    <p class="product-item1"><i><b>" Ayam Goreng Samyang adalah restoran yang menyediakan ayam goreng dengan cita rasa pedas khas Korea. Kami menggunakan bumbu Samyang yang terkenal dengan tingkat kepedasan tinggi yang dapat memanjakan lidah Anda. "</p></i></b>
 </section>
 
 <section id="menu">
@@ -403,13 +499,59 @@ figure.snip1390 .profile {
                 <img src="img/12.webp" alt="Menu 8">
                 <h3>5x Fire Wings</h3>
             </div>
-        </div>->
+        </div>
         </div>
     </section>
+    
+      <div class="container">
+    <img id="mainImage" src="img/gal1.webp" class="fade">
+
+  </div>
 
 <section id="testimoni">
   <h2 class="section2"><b><i class="fas fa-users"> &nbsp; Testimoni</i></b></h2>
   <div class="testimonial-slider">
+
+  <figure class="snip1390">
+  <img src="img/dany.webp" alt="profile-sample3" class="profile" />
+  <figcaption>
+    <h4><b>Dany Indrawan P.</h4></b>
+    <blockquote>Saya sangat suka ayam pedas saos Samyang! Rasanya sangat lezat dan pedasnya pas. Tekstur ayamnya juga renyah sekali, mantull lahhh 
+    </blockquote>
+  </figcaption>
+</figure>
+<figure class="snip1390 hover"><img src="img/septian.webp" alt="profile-sample5" class="profile" />
+  <figcaption>
+    <h4><b>Septian Rendy S.</h4></b>
+    <blockquote>Ayam pedas saos Samyang adalah pilihan terbaik bagi pecinta makanan pedas! Saosnya memiliki rasa yang khas dan membuatku ketagihan. </blockquote>
+  </figcaption>
+</figure>
+<figure class="snip1390"><img src="img/iqbal.webp" alt="profile-sample6" class="profile" />
+  <figcaption>
+    <h4><b>Iqbal Setiawan</h4></b>
+    <blockquote>Inilah ayam pedas terbaik yang pernah saya coba! Samyang selalu berhasil memberikan rasa yang autentik dan pedas yang menggigit. Ayamnya juga dipanggang dengan sempurna.</blockquote>
+  </figcaption>
+</figure>
+  <figure class="snip1390">
+  <img src="img/dany.webp" alt="profile-sample3" class="profile" />
+  <figcaption>
+    <h4><b>Dany Indrawan P.</h4></b>
+    <blockquote>Saya sangat suka ayam pedas saos Samyang! Rasanya sangat lezat dan pedasnya pas. Tekstur ayamnya juga renyah sekali, mantull lahhh 
+    </blockquote>
+  </figcaption>
+</figure>
+<figure class="snip1390 hover"><img src="img/septian.webp" alt="profile-sample5" class="profile" />
+  <figcaption>
+    <h4><b>Septian Rendy S.</h4></b>
+    <blockquote>Ayam pedas saos Samyang adalah pilihan terbaik bagi pecinta makanan pedas! Saosnya memiliki rasa yang khas dan membuatku ketagihan. </blockquote>
+  </figcaption>
+</figure>
+<figure class="snip1390"><img src="img/iqbal.webp" alt="profile-sample6" class="profile" />
+  <figcaption>
+    <h4><b>Iqbal Setiawan</h4></b>
+    <blockquote>Inilah ayam pedas terbaik yang pernah saya coba! Samyang selalu berhasil memberikan rasa yang autentik dan pedas yang menggigit. Ayamnya juga dipanggang dengan sempurna.</blockquote>
+  </figcaption>
+</figure>
   <figure class="snip1390">
   <img src="img/dany.webp" alt="profile-sample3" class="profile" />
   <figcaption>
@@ -431,25 +573,28 @@ figure.snip1390 .profile {
   </figcaption>
 </figure>
 </div>
+</div>
+
 </section>
 
-<section id="contact">
-    <h2><i class="fas fa-phone"></i> &nbsp; Hubungi Kami</h2>
-    <form class="contact-form" action="handle_form.php" method="post">
-<form class="contact-form" action="handle_form.php" method="post">
-    <!-- Form fields -->
+<section id="contact" class="folded">
+    <h2><i class="fas fa-phone"></i> <span class="fold-toggle" onclick="toggleContact()"> &nbsp; Hubungi Kami Disini</span></h2>
+    <div id="contact-content" class="contact-content">
+        <form class="contact-form" action="handle_form.php" method="post">
+            <!-- Form fields -->
             <input type="text" name="name" placeholder="Nama" required>
             <input type="email" name="email" placeholder="Email" required>
             <textarea name="message" placeholder="Pesan" rows="5" required></textarea>
             <button type="submit">Kirim</button>
         </form>
-    </section>
-
+    </div>
+</section>
     <button class="order-button"><img src="img/orderbut.webp" alt="tombolorder"></button>
 
     <!-- Popup container -->
     <div id="popup-container" class="popup-container" onclick="closePopup()">
         <div class="popup-content" onclick="event.stopPropagation()">
+          <h2 class="product-item"> DAPAT DIPESAN MELALUI :</h2>
             <a href="https://wa.me/6281216447149" target="_blank">
                 <img src="img/wa.webp" alt="WhatsApp">
             </a>
@@ -463,8 +608,48 @@ figure.snip1390 .profile {
         </div>
     </div>
 
+<!-- Embed Google Maps with pin location -->
+<section id="Lokasi" >
+<h3 class="section2"><i class="fas fa-map-marked-alt"></i> &nbsp;Lokasi Kami di MAPS :</h3>
+</section1>
+    <iframe
+        width="100%"
+        height="400"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDemzmkSGb0wnXBxqunZAuTWb1wFeDC02M&q=-8.006928443908691,112.62730407714844">
+    </iframe>
+
+
     <script>
-      
+      document.addEventListener("DOMContentLoaded", function() {
+  const images = ["gal1.webp", "gal2.webp", "gal3.webp"]; // Add more images if needed
+  let currentIndex = 0;
+  const imgElement = document.getElementById('mainImage');
+
+  function fadeOutCurrentImage() {
+    imgElement.style.opacity = 0;
+    setTimeout(() => {
+      fadeInNextImage();
+    }, 1000); // Adjust the duration of fade-out transition here (milliseconds)
+  }
+
+  function fadeInNextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    const nextImage = images[currentIndex];
+    
+    const tempImage = new Image();
+    tempImage.onload = function() {
+      imgElement.src = nextImage;
+      imgElement.style.opacity = 1;
+    }
+    tempImage.src = nextImage;
+  }
+
+  setInterval(fadeOutCurrentImage, 3000); // Change the duration of each image display (milliseconds)
+});
         // JavaScript for the order button pop-up
         document.querySelector('.order-button').addEventListener('click', function() {
             document.getElementById('popup-container').style.display = 'flex';
@@ -507,6 +692,21 @@ $(".hover").mouseleave(
   }
 );
 
+function toggleContact() {
+    const contactSection = document.getElementById('contact');
+    const contactContent = document.getElementById('contact-content');
+    const foldToggle = document.querySelector('.fold-toggle');
+
+    if (contactSection.classList.contains('folded')) {
+        contactSection.classList.remove('folded');
+        contactContent.style.display = 'block';
+        foldToggle.textContent = 'Tutup';
+    } else {
+        contactSection.classList.add('folded');
+        contactContent.style.display = 'none';
+        foldToggle.textContent = 'Hubungi Kami';
+    }
+}
     </script>
 </body>
 </html>
