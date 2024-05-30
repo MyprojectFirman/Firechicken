@@ -76,22 +76,24 @@
             display: block;
         }
         
-        .slider {
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
-        
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .slide {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
+.slider {
+    width: 100%;
+    max-width: none; /* Remove the maximum width */
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    width: 100%; /* Ensure the slides take up the full width */
+    height: 100%; /* Ensure the slides take up the full height */
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%; /* Ensure each slide takes up the full width */
+    box-sizing: border-box;
+}
         
         .slide img {
             max-width: 500px;
