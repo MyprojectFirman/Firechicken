@@ -427,6 +427,28 @@ button {
 .fold-toggle {
     cursor: pointer;
 }
+
+/* Mobile Landscape & Portrait */
+@media screen and (max-width: 480px) {
+    .slider {
+        width: 100%;
+        max-width: none;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .slides {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+}
     </style>
 </head>
 <body>
