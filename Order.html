@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--divinectorweb.com-->
 <head>
 	<meta charset="UTF-8">
 	<title>Simple Sidebar Menu Using HTML & CSS</title>
@@ -12,17 +11,22 @@
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
-	background: #e3e9f7;
+	background: lightcoral;
 }
 nav ul {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 260px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: #262626;
+    margin: auto 0; /* Center vertically */
+    padding: 0;
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: darkred;
+    width: 180px;
+    display: flex; /* Add flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    border-radius: 10px;
 }
 nav ul li {
 	list-style: none;
@@ -33,7 +37,7 @@ nav ul li a {
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 20px;
-	color: #fff;
+	color: white;
 	position: relative;
 	padding: 25px 0 25px 38px;
 }
@@ -44,13 +48,13 @@ nav ul li a:before {
 	right: 0px;
 	width: 0%;
 	height: 100%;
-	background: #e3e9f7;
+	background: rgba(209, 83, 83, 0.5);
 	border-radius: 40px 0px 0px 40px;
 	z-index: -1;
 	transition: all 300ms ease-in-out;
 }
 nav ul li a:hover {
-	color: #2b2626;
+	color: white;
 }
 nav ul li a:hover:before {
 	width: 95%;
@@ -87,25 +91,429 @@ nav ul li a:hover:before {
 
 	  
 	  
+
+
+        .sidebar {
+            background-color: rgba(0, 0, 0, 0.7);
+            height: 100vh;
+            width: 150px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            border-radius: 5px;
+            border: 3px solid black;
+        }
+
+        .menu {
+            padding: 20px;
+        }
+
+        .menu h2 {
+            color: yellow;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        
+        }
+
+        .menu li {
+            margin-bottom: 10px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu li a:hover {
+            background-color: #e30613;
+            color: #fff;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+        }
+
+        .product {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product img {
+            max-width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .product h3 {
+            margin-top: 0;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-action {
+            text-align: right;
+        }
+
+        .product-action button {
+            background-color: #e30613;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .product-action button:hover {
+            background-color: #c20510;
+        }
+
+        .welcome-page {
+            display: none;
+        }
+
+        .right-side {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .header, .footer {
+            background-color: #ffdb4d;
+            padding: 1px;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .qr-code img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .menu-item, .recommended-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-item img, .recommended-item img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #e30613;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .button {
+            background-color: #e30613;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #c20510;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: lightcoral;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .quantity-controls button {
+            background-color: #e30613;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+.cart-details {
+    position: fixed;
+    top: 0;
+    color: white;
+    right: 0;
+    width: 300px; /* Adjust width as needed */
+    height: 100%;
+    background-color: #262626; /* Example background color */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    border-left: 1px solid #ccc; /* Example border */
+    padding: 20px; /* Example padding */
+    box-sizing: border-box;
+    opacity: 0; /* Hide initially */
+    transform: translateX(100%); /* Hide initially */
+    transition: opacity 0.3s, transform 0.3s; /* Add transition effect */
+}
+.cart-item {
+    display: flex; /* Set tata letak flex */
+    align-items: center; /* Posisikan elemen secara vertikal di tengah */
+    margin-bottom: 10px; /* Beri jarak antar item */
+}
+
+.cart-item img {
+    width: 50px; /* Atur lebar gambar */
+    height: 50px; /* Atur tinggi gambar */
+    margin-right: 10px; /* Beri jarak dari kanan */
+}
+
+/* CSS for mobile (max-width: 320px) */
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 12px; /* Mengurangi ukuran font */
+    }
+    .sidebar {
+        width: 100%; /* Mengisi lebar layar pada perangkat mobile */
+    }
+    .menu {
+        padding: 5px; /* Mengurangi padding pada menu */
+    }
+    .menu h2 {
+        font-size: 14px; /* Mengurangi ukuran font judul */
+        margin-bottom: 5px; /* Mengurangi margin bawah pada judul */
+    }
+    .main-content {
+        margin-left: 0; /* Menghapus margin kiri */
+        padding: 5px; /* Mengurangi padding */
+        width: 100%; /* Mengisi lebar layar */
+    }
+    .product {
+        flex-direction: column; /* Menata produk dalam satu kolom */
+        align-items: flex-start; /* Mengatur produk ke kiri */
+    }
+    .product img {
+        max-width: 80%; /* Mengurangi lebar gambar */
+        margin: 5px 0; /* Mengatur margin atas dan bawah */
+    }
+    .product-details {
+        text-align: left; /* Mengatur teks ke kiri */
+    }
+    .product-action {
+        text-align: left; /* Mengatur teks ke kiri */
+        margin-top: 5px; /* Menambah margin atas */
+    }
+    .quantity-controls {
+        margin: 5px 0; /* Menambah margin atas dan bawah */
+    }
+    .quantity-controls button {
+        padding: 3px 5px; /* Mengurangi padding tombol */
+    }
+    .cart-details {
+        width: 100%; /* Mengisi lebar layar */
+        padding: 5px; /* Mengurangi padding */
+    }
+    .box-area {
+        width: 90%; /* Mengurangi lebar kontainer box */
+        margin: 0 auto; /* Posisi tengah */
+    }
+    .box-area h2 {
+        font-size: 18px; /* Mengurangi ukuran font judul */
+    }
+    .box-area p {
+        font-size: 12px; /* Mengurangi ukuran font paragraf */
+    }
+    .logo {
+        width: 80px; /* Mengurangi lebar logo */
+        height: 80px; /* Mengurangi tinggi logo */
+        margin: 10px auto; /* Posisi tengah */
+    }
+}
+
+        /* CSS for desktop */
+        @media screen and (min-width: 601px) {
+            /* Your desktop styles here */
+            body {
+                background-color: rgba(209, 83, 83, 0.5);
+            }
+        }
+        /* CSS for logo */
+        .logo {
+            /* Your logo styles here */
+            width: 100; /* Adjust width as needed */
+            height: auto; /* Adjust height as needed */
+            /* Adjust margin as needed */
+            display: block;
+            position: relative;
+            margin-top: 10px;
+        }
 	</style>
 </head>
 <body>
+      <!-- Logo -->
 	<nav>
 <ul>
-    <li><a href="#" onclick="showWelcomePage()"><i class="fas fa-star"></i> Promo</a></li>
-    <li><a href="#" onclick="showProducts('ayam')"><i class="fas fa-drumstick-bite"></i> Ayam</a></li>
-    <li><a href="#" onclick="showProducts('tambahan')"><i class="fas fa-plus"></i> Tambahan</a></li>
-    <li><a href="#" onclick="showProducts('drinks')"><i class="fas fa-cocktail"></i> Drinks</a></li>
+          <img src="img/logo.webp" alt="Logo" class="logo">
+
+    <li><a href="#" onclick="showWelcomePage()"> Promo</a></li>
+    <li><a href="#" onclick="showProducts('ayam')">Ayam</a></li>
+    <li><a href="#" onclick="showProducts('tambahan')"> Tambahan</a></li>
+    <li><a href="#" onclick="showProducts('drinks')">Drinks</a></li>
 </ul>
 	</nav>
 	<div class="wrapper">
-		<div class="section">
-			<div class="box-area">
-				<h2 style="color: #2b2626">Homepage</h2>
-			</div>
-		</div>
 	</div>
-	    <div id="productModal" class="modal">
+<div class="main-content">
+    <div id="welcome-page" class="welcome-page">
+        <div class="header">
+            <h1>SELAMAT DATANG DI FIRE CHICKEN</h1>
+        </div>
+        <div class="content">
+            <h2>Scan QR Code</h2>
+            <div class="qr-code">
+                <img src="https://via.placeholder.com/150" alt="QR Code">
+            </div>
+            <p>Langsung Bonus 10 Poin</p>
+        </div>
+        <div class="content">
+            <h2>Sarapan</h2>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/200" alt="Sarapan Menu">
+                <div>
+                    <h3>Ayam McD</h3>
+                    <p>Rp20.000</p>
+                </div>
+            </div>
+            <h2>Cita Rasa Nusantara</h2>
+            <div class="menu-item">
+                <img src="https://via.placeholder.com/200" alt="Cita Rasa Nusantara Menu">
+                <div>
+                    <h3>McCafe</h3>
+                    <p>Rp15.000</p>
+                </div>
+            </div>
+            <h2>Rekomendasi</h2>
+            <div class="recommended-items">
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>PaNas HeBat Korean Soy Garlic Wings</h4>
+                        <p>Rp30.500</p>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>4pcs Korean Soy Garlic Wings</h4>
+                        <p>Rp31.500</p>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>Iced Coffee Caramel Macchiato</h4>
+                        <p>Rp21.500</p>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>PaNas Wings Korean Soy Garlic</h4>
+                        <p>Rp40.500</p>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>6pcs Korean Soy Garlic Wings</h4>
+                        <p>Rp48.000</p>
+                    </div>
+                </div>
+                <div class="recommended-item">
+                    <img src="https://via.placeholder.com/200" alt="Recommended Item">
+                    <div>
+                        <h4>Iced Coffee Caramel Macchiato Jelly Float</h4>
+                        <p>Rp27.000</p>
+                    </div>
+                </div>
+            </div>
+            <button class="button">Rp0</button>
+            <p>Mulai Pesan Sekarang</p>
+            <p>Silahkan Lakukan pemesanan melalui halaman ini , kami menunggu pesanan anda, Terima Kasih.</p>
+        </div>
+        <div class="footer">
+            <p> Iman_CodeRed @MGWR_PRIV8™.</p>
+        </div>
+    </div>
+    <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <div id="modalProductContent"></div>
@@ -144,8 +552,8 @@ function showProducts(category) {
                 products = [
                     { name: "Ayam Crispy Ori", description: "Delicious burger made with juicy chicken patty.", price: "Rp9000", image: "img/5.webp" },
                     { name: "Fire Chicken Wings", description: "Crispy and spicy chicken wings for a fiery kick.", price: "Rp30000", image: "img/12.webp" },
-                    { name: "Chicken Cola", description: "Ayam yang di masak dengan cola dan rempah rahasia , menjadikan cita rasa yang manis pedas dan memanjakan lidah.", price: "Rp20.000", image: "img/1.webp" },
-                    { name: "Chicken Nuggets", description: "Classic chicken nuggets served with your choice of sauce.", price: "Rp12.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Cola", description: "Ayam yang di masak dengan cola dan rempah rahasia , menjadikan cita rasa yang manis pedas dan memanjakan lidah.", price: "Rp20000", image: "img/1.webp" },
+                    { name: "Chicken Nuggets", description: "Classic chicken nuggets served with your choice of sauce.", price: "Rp12000", image: "https://via.placeholder.com/200" },
                     { name: "Chicken Rice Bowl", description: "Satisfying rice bowl topped with tender chicken pieces.", price: "Rp22.000", image: "https://via.placeholder.com/200" },
                     { name: "Chicken Wrap", description: "Flavorful wrap filled with grilled chicken and fresh veggies.", price: "Rp17.000", image: "https://via.placeholder.com/200" },
                     { name: "Chicken Caesar Sandwich", description: "Tasty sandwich with chicken, lettuce, and Caesar dressing.", price: "Rp19.000", image: "https://via.placeholder.com/200" },
@@ -213,7 +621,9 @@ function showProducts(category) {
 }
 // Global variable to store selected product information
 var selectedProduct;
-
+function formatNumberWithSeparator(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 // Function to show product modal
 function showProductModal(name, description, price, image) {
     selectedProduct = { name: name, description: description, price: price, image: image };
@@ -221,10 +631,13 @@ function showProductModal(name, description, price, image) {
     var modal = document.getElementById('productModal');
     var modalContent = document.getElementById('modalProductContent');
 
+    // Memformat harga dengan separator titik untuk setiap ribuan
+    var formattedPrice = formatNumberWithSeparator(price);
+
     modalContent.innerHTML = '<img style="max-width: 400px; height: auto;" src="' + image + '" alt="' + name + '">' +
                              '<h3>' + name + '</h3>' +
                              '<p>' + description + '</p>' +
-                             '<p>Price: ' + price + '</p>' +
+                             '<p>Price: Rp' + formattedPrice + '</p>' + // Menampilkan harga dengan separator titik
                              '<div class="quantity-controls">' +
                              '<button onclick="changeQuantity(this, -1)">-</button>' +
                              '<input type="text" id="quantity" value="1" readonly>' +
@@ -235,7 +648,6 @@ function showProductModal(name, description, price, image) {
     document.getElementById('quantity').value = 1;
     modal.style.display = 'block';
 }
-
 // Function to change quantity
 function changeQuantity(button, amount) {
     var quantityInput = button.parentNode.querySelector('input');
@@ -307,10 +719,6 @@ function formatNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function formatNumber(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
 // Function to show welcome page
 function showWelcomePage() {
     var welcomePage = document.getElementById('welcome-page');
@@ -350,6 +758,14 @@ function redirectToCheckout() {
     // Redirect to checkout page with cart data and image URLs as URL parameters
     window.location.href = 'checkout.html?cartItems=' + encodedCartItems + '&totalPrice=' + encodedTotalPrice + '&imageUrls=' + encodedImageUrls;
 }
+// Function to close cart details when clicking outside
+window.addEventListener('click', function(event) {
+    var cartDetails = document.getElementById('cartDetails');
+    if (event.target === cartDetails) {
+        cartDetails.style.opacity = '0';
+        cartDetails.style.transform = 'translateX(100%)';
+    }
+});
 </script>
 </body>
 </html>
