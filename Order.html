@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--divinectorweb.com-->
+<head>
+	<meta charset="UTF-8">
+	<title>Simple Sidebar Menu Using HTML & CSS</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+	<style>
+	  body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	background: #e3e9f7;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 260px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #262626;
+}
+nav ul li {
+	list-style: none;
+}
+nav ul li a {
+	display: block;
+	font-family: 'Montserrat', sans-serif;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 20px;
+	color: #fff;
+	position: relative;
+	padding: 25px 0 25px 38px;
+}
+nav ul li a:before {
+	content: '';
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 0%;
+	height: 100%;
+	background: #e3e9f7;
+	border-radius: 40px 0px 0px 40px;
+	z-index: -1;
+	transition: all 300ms ease-in-out;
+}
+nav ul li a:hover {
+	color: #2b2626;
+}
+nav ul li a:hover:before {
+	width: 95%;
+}
+.wrapper {
+	margin-left: 260px;
+}
+.section {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	text-align: center;
+}
+.box-area h2 {
+	text-transform: uppercase;
+	font-size: 50px;
+}
+.box-area p {
+	line-height: 2;
+}
+.box-area {
+	width: 75%;
+}
+.logo {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 25px auto;
+}
+.logo img {
+	width: 100%;
+}
+
+	  
+	  
+	</style>
+</head>
+<body>
+	<nav>
+<ul>
+    <li><a href="#" onclick="showWelcomePage()"><i class="fas fa-star"></i> Promo</a></li>
+    <li><a href="#" onclick="showProducts('ayam')"><i class="fas fa-drumstick-bite"></i> Ayam</a></li>
+    <li><a href="#" onclick="showProducts('tambahan')"><i class="fas fa-plus"></i> Tambahan</a></li>
+    <li><a href="#" onclick="showProducts('drinks')"><i class="fas fa-cocktail"></i> Drinks</a></li>
+</ul>
+	</nav>
+	<div class="wrapper">
+		<div class="section">
+			<div class="box-area">
+				<h2 style="color: #2b2626">Homepage</h2>
+			</div>
+		</div>
+	</div>
+	    <div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalProductContent"></div>
+
+    </div>
+</div>
+<div id="cartDetails" class="cart-details">
+    <h2>Pesanan di keranjang</h2>
+    <div id="cartItems"></div>
+    <p id="totalPrice">Total Price: Rp0.00</p>
+    <button class="checkout-btn" onclick="redirectToCheckout()">Checkout</button>
+</div>   
+
+<div id="products-container"></div>
+</div>
+<div class="main-content">
+    <!-- Existing HTML code continues here -->
+
+    <!-- Products container -->
+    <div id="products-container"></div>
+</div>
+
+<script>
+    // Function to show products based on category
+function showProducts(category) {
+    var welcomePage = document.getElementById('welcome-page');
+    welcomePage.style.display = 'none';
+
+    var productsContainer = document.getElementById('products-container');
+    productsContainer.innerHTML = '';
+
+    var products = [];
+
+            if (category === 'ayam') {
+                // Mocked data for chicken category
+                products = [
+                    { name: "Ayam Crispy Ori", description: "Delicious burger made with juicy chicken patty.", price: "Rp9000", image: "img/5.webp" },
+                    { name: "Fire Chicken Wings", description: "Crispy and spicy chicken wings for a fiery kick.", price: "Rp30000", image: "img/12.webp" },
+                    { name: "Chicken Cola", description: "Ayam yang di masak dengan cola dan rempah rahasia , menjadikan cita rasa yang manis pedas dan memanjakan lidah.", price: "Rp20.000", image: "img/1.webp" },
+                    { name: "Chicken Nuggets", description: "Classic chicken nuggets served with your choice of sauce.", price: "Rp12.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Rice Bowl", description: "Satisfying rice bowl topped with tender chicken pieces.", price: "Rp22.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Wrap", description: "Flavorful wrap filled with grilled chicken and fresh veggies.", price: "Rp17.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Caesar Sandwich", description: "Tasty sandwich with chicken, lettuce, and Caesar dressing.", price: "Rp19.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Sate", description: "Traditional Indonesian chicken satay skewers served with peanut sauce.", price: "Rp25.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Shawarma", description: "Middle Eastern street food wrap filled with grilled chicken and veggies.", price: "Rp21.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Alfredo Pasta", description: "Creamy pasta dish with grilled chicken and parmesan cheese.", price: "Rp24.000", image: "https://via.placeholder.com/200" }
+                ];
+                
+                           } else if (category === 'drinks') {
+                // Mocked data for chicken category
+                products = [
+                    { name: "Chicken Burger", description: "Delicious burger made with juicy chicken patty.", price: "Rp15000", image: "https://via.placeholder.com/200" },
+                    { name: "Spicy Chicken Wings", description: "Crispy and spicy chicken wings for a fiery kick.", price: "Rp18.000", image: "https://via.placeholder.com/200" },
+                    { name: "Grilled Chicken Salad", description: "Healthy salad topped with grilled chicken slices.", price: "Rp20.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Nuggets", description: "Classic chicken nuggets served with your choice of sauce.", price: "Rp12.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Rice Bowl", description: "Satisfying rice bowl topped with tender chicken pieces.", price: "Rp22.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Wrap", description: "Flavorful wrap filled with grilled chicken and fresh veggies.", price: "Rp17.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Caesar Sandwich", description: "Tasty sandwich with chicken, lettuce, and Caesar dressing.", price: "Rp19.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Sate", description: "Traditional Indonesian chicken satay skewers served with peanut sauce.", price: "Rp25.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Shawarma", description: "Middle Eastern street food wrap filled with grilled chicken and veggies.", price: "Rp21.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chicken Alfredo Pasta", description: "Creamy pasta dish with grilled chicken and parmesan cheese.", price: "Rp24.000", image: "https://via.placeholder.com/200" }
+                ];
+            } else if (category === 'fries') {
+                // Mocked data for fries category
+                products = [
+                    { name: "French Fries", description: "Classic crispy fries seasoned to perfection.", price: "Rp10.000", image: "https://via.placeholder.com/200" },
+                    { name: "Sweet Potato Fries", description: "Healthy alternative made from sweet potatoes.", price: "Rp12.000", image: "https://via.placeholder.com/200" },
+                    { name: "Cheese Fries", description: "Irresistible fries topped with melted cheese.", price: "Rp15.000", image: "https://via.placeholder.com/200" },
+                    { name: "Chili Cheese Fries", description: "Spicy fries smothered in chili and cheese sauce.", price: "Rp18.000", image: "https://via.placeholder.com/200" },
+                    { name: "Garlic Parmesan Fries", description: "Delicious fries tossed in garlic and parmesan cheese.", price: "Rp16.000", image: "https://via.placeholder.com/200" },
+                    { name: "Loaded Fries", description: "Fries loaded with bacon, cheese, and green onions.", price: "Rp20.000", image: "https://via.placeholder.com/200" },
+                    { name: "Curly Fries", description: "Twisted fries with a crispy texture and seasoned flavor.", price: "Rp14.000", image: "https://via.placeholder.com/200" },
+                    { name: "Waffle Fries", description: "Wavy-cut fries with a unique shape and great taste.", price: "Rp13.000", image: "https://via.placeholder.com/200" },
+                    { name: "Truffle Fries", description: "Decadent fries drizzled with truffle oil and parmesan cheese.", price: "Rp22.000", image: "https://via.placeholder.com/200" },
+                    { name: "Poutine", description: "Canadian classic made with fries, cheese curds, and gravy.", price: "Rp17.000", image: "https://via.placeholder.com/200" }
+                ];
+            }
+
+    // Display products in the container
+    products.forEach(function(product) {
+        var productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        // Parse the price as a float
+        var parsedPrice = parseFloat(product.price.replace('Rp', '').replace(',', ''));
+
+        // Check if price is a valid number
+        if (!isNaN(parsedPrice)) {
+            var formattedPrice = formatNumber(parsedPrice.toFixed(2));
+            
+            productElement.innerHTML = '<img src="' + product.image + '" alt="' + product.name + '">' +
+                                       '<div class="product-details">' +
+                                       '<h3>' + product.name + '</h3>' +
+                                       '<p>' + product.description + '</p>' +
+                                       '<p>Price: Rp' + formattedPrice + '</p>' +
+                                       '<div class="product-action">' +
+                                       '<button onclick="showProductModal(' + "'" + product.name + "','" + product.description + "','" + product.price + "','" + product.image + "'" + ')">Pesan</button>' +
+                                       '</div>' +
+                                       '</div>'; // Close product-details div
+            productsContainer.appendChild(productElement);
+        } else {
+            console.error('Invalid price:', product.price);
+        }
+    });
+}
+// Global variable to store selected product information
+var selectedProduct;
+
+// Function to show product modal
+function showProductModal(name, description, price, image) {
+    selectedProduct = { name: name, description: description, price: price, image: image };
+
+    var modal = document.getElementById('productModal');
+    var modalContent = document.getElementById('modalProductContent');
+
+    modalContent.innerHTML = '<img style="max-width: 400px; height: auto;" src="' + image + '" alt="' + name + '">' +
+                             '<h3>' + name + '</h3>' +
+                             '<p>' + description + '</p>' +
+                             '<p>Price: ' + price + '</p>' +
+                             '<div class="quantity-controls">' +
+                             '<button onclick="changeQuantity(this, -1)">-</button>' +
+                             '<input type="text" id="quantity" value="1" readonly>' +
+                             '<button onclick="changeQuantity(this, 1)">+</button>' +
+                             '</div>' +
+                             '<button onclick="addToCart()" class="button">Add to Cart</button>'; // Add "Add to Cart" button
+                             
+    document.getElementById('quantity').value = 1;
+    modal.style.display = 'block';
+}
+
+// Function to change quantity
+function changeQuantity(button, amount) {
+    var quantityInput = button.parentNode.querySelector('input');
+    var currentQuantity = parseInt(quantityInput.value);
+    var newQuantity = currentQuantity + amount;
+
+    if (newQuantity > 0) {
+        quantityInput.value = newQuantity;
+    }
+}
+
+function addToCart() {
+    var quantityInput = document.getElementById('quantity');
+    var quantity = parseInt(quantityInput.value);
+
+    // Parse the price as a float
+    var price = parseFloat(selectedProduct.price.replace('Rp', '').replace(',', ''));
+
+    // Check if price is a valid number
+    if (!isNaN(price)) {
+        var totalPricePerItem = price * quantity; // Calculate total price for this item
+
+        var formattedPrice = formatNumber(totalPricePerItem.toFixed(2));
+
+        var item = document.createElement('div');
+        item.classList.add('cart-item');
+        item.setAttribute('data-name', selectedProduct.name);
+        item.innerHTML = '<img src="' + selectedProduct.image + '" alt="' + selectedProduct.name + '">' +
+                         '<div class="product-details">' +
+                         '<h3>' + selectedProduct.name + '</h3>' +
+                         '<p>Price: Rp' + formatNumber(price.toFixed(2)) + '</p>' +
+                         '<p class="quantity">Quantity: ' + quantity + '</p>' +
+                         '<p class="total-price">Total Price: Rp' + formattedPrice + '</p>' +
+                         '</div>' +
+                         '<hr>';
+        var cartItems = document.getElementById('cartItems');
+        cartItems.appendChild(item);
+
+        // Show cart details
+        var cartDetails = document.getElementById('cartDetails');
+        cartDetails.style.opacity = '1';
+        cartDetails.style.transform = 'translateX(0)';
+
+        updateTotalPrice(); // Update total price
+    } else {
+        console.error('Invalid price:', selectedProduct.price);
+    }
+}
+
+function updateTotalPrice() {
+    console.log("Updating total price...");
+    var cartItems = document.querySelectorAll('.cart-item');
+    console.log("Number of cart items:", cartItems.length);
+    var totalPrice = 0;
+
+    cartItems.forEach(function(item) {
+        var itemPrice = parseFloat(item.querySelector('.total-price').textContent.replace('Total Price: Rp', '').replace('.', '').replace(',', '.'));
+        if (!isNaN(itemPrice)) {
+            totalPrice += itemPrice;
+        }
+    });
+
+    console.log("Total price:", totalPrice);
+
+    document.getElementById('totalPrice').textContent = 'Total Price: Rp' + formatNumber(totalPrice.toFixed(2));
+}
+
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Function to show welcome page
+function showWelcomePage() {
+    var welcomePage = document.getElementById('welcome-page');
+    var productsContainer = document.getElementById('products-container');
+    productsContainer.innerHTML = '';
+    welcomePage.style.display = 'block';
+}
+
+// Function to initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    showWelcomePage();
+});
+// Function to close modal when clicking outside
+window.onclick = function(event) {
+    var modal = document.getElementById('productModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+function redirectToCheckout() {
+    // Retrieve cart data
+    var cartItems = document.getElementById('cartItems').innerHTML;
+    var totalPrice = document.getElementById('totalPrice').textContent;
+
+    // Retrieve image URLs
+    var images = document.querySelectorAll('.cart-item img');
+    var imageUrls = [];
+    images.forEach(function(image) {
+        imageUrls.push(image.getAttribute('src'));
+    });
+
+    // Encode cart data and image URLs for URL
+    var encodedCartItems = encodeURIComponent(cartItems);
+    var encodedTotalPrice = encodeURIComponent(totalPrice);
+    var encodedImageUrls = encodeURIComponent(JSON.stringify(imageUrls));
+
+    // Redirect to checkout page with cart data and image URLs as URL parameters
+    window.location.href = 'checkout.html?cartItems=' + encodedCartItems + '&totalPrice=' + encodedTotalPrice + '&imageUrls=' + encodedImageUrls;
+}
+</script>
+</body>
+</html>
